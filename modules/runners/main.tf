@@ -58,6 +58,10 @@ resource "aws_launch_template" "runner" {
     market_type = var.market_options
   }
 
+  credit_specification {
+    cpu_credits = "standard"
+  }
+
   image_id      = data.aws_ami.runner.id
   instance_type = var.instance_type
 
