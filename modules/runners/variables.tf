@@ -75,7 +75,7 @@ variable "ami_filter" {
 variable "ami_owners" {
   description = "The list of owners used to select the AMI of action runner instances."
   type        = list(string)
-  default     = ["amazon"]
+  default     = ["self"]
 }
 
 variable "userdata_pre_install" {

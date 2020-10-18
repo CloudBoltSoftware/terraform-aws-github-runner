@@ -65,7 +65,7 @@ module "runners" {
   instance_type = var.instance_type
 
   runner_architecture = local.runner_architecture
-  ami_filter          = local.runner_architecture == "arm64" ? { name = ["amzn2-ami-hvm-2*-arm64-gp2"] } : { name = ["amzn2-ami-hvm-2.*-x86_64-ebs"] }
+  ami_filter          = local.runner_architecture == "arm64" ? { name = ["amzn2-ami-hvm-2*-arm64-gp2"] } : { name = [var.ami_filter] }
 
   sqs_build_queue                 = aws_sqs_queue.queued_builds
   github_app                      = var.github_app

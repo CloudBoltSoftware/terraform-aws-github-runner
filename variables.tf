@@ -192,3 +192,9 @@ variable "runner_allow_prerelease_binaries" {
   type        = bool
   default     = false
 }
+
+variable "ami_filter" {
+  description = "The base AMI for the runner"
+  type = string
+  default = "amzn2-ami-hvm-2.*-x86_64-ebs" 
+}
