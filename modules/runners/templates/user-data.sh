@@ -5,13 +5,6 @@ ${pre_install}
 
 yum update -y
 
-# Install docker
-amazon-linux-extras install docker
-service docker start
-usermod -a -G docker ec2-user
-
-yum install -y curl jq git
-
 # Install runner
 cd /home/ec2-user
 mkdir actions-runner && cd actions-runner
@@ -88,6 +81,9 @@ export RUNNER_ALLOW_RUNASROOT=1
 
 chown -R ec2-user:ec2-user .
 ./svc.sh install ${service_user}
+
+ln -fs /home/ec2-user/.pyenv/versions/3.6.4/bin/python /usr/bin/python 
+ln -fs /home/ec2-user/.pyenv/versions/3.6.4/bin/pip /usr/bin/pip 
 
 ${post_install}
 
