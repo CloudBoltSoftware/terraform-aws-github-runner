@@ -6,7 +6,7 @@ ${pre_install}
 yum update -y
 
 # Install runner
-cd /home/ec2-user
+cd /home/ec2-user || cd /home/centos 
 mkdir actions-runner && cd actions-runner
 
 aws s3 cp ${s3_location_runner_distribution} actions-runner.tar.gz
@@ -79,11 +79,8 @@ aws ssm delete-parameter --name ${environment}-$INSTANCE_ID --region $REGION
 export RUNNER_ALLOW_RUNASROOT=1
 ./config.sh --unattended --name $INSTANCE_ID --work "_work" $CONFIG
 
-chown -R ec2-user:ec2-user .
+chown -R ec2-user:ec2-user . || chown -R centos:centos .
 ./svc.sh install ${service_user}
-
-ln -fs /home/ec2-user/.pyenv/versions/3.6.4/bin/python /usr/bin/python 
-ln -fs /home/ec2-user/.pyenv/versions/3.6.4/bin/pip /usr/bin/pip 
 
 ${post_install}
 
